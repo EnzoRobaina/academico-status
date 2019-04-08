@@ -1,5 +1,8 @@
 <?php
     header('Content-Type: application/json; charset=utf-8');
+    header("Access-Control-Allow-Methods: GET");
+    header("Access-Control-Allow-Origin: *");
+
     date_default_timezone_set('America/Fortaleza');
     $date = date('d-m-Y h:i:s a', time());
     $curl = curl_init('https://academico.iff.edu.br/');
@@ -15,7 +18,9 @@
     }
 
 
-    $data =  $date.", o Acadêmico está ".$status;
+    $data =array(
+        "response" => $date.", o Acadêmico está ".$status
+    );
     
     echo json_encode($data, JSON_UNESCAPED_UNICODE);
 ?>
